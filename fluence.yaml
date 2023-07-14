@@ -5,7 +5,7 @@
 # Documentation: https://github.com/fluencelabs/fluence-cli/tree/main/docs/configs/fluence.md
 
 version: 2
-aquaInputPath: src/aqua/main.aqua
+aquaInputPath: src/aqua/two_party_mpc.aqua
 workers:
   defaultWorker:
     services: []
@@ -18,4 +18,4 @@ hosts:
     peerIds:
       - 12D3KooWJd3HaMJ1rpLY1kQvcjRPEvnDwcXrH8mJvk7ypcZXqXGE
 relays: kras
-aquaOutputTSPath: src/ts/src/aqua
+aquaOutputTSPath: src/ts/src/.aqua

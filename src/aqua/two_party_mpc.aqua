@@ -1,7 +1,7 @@
-aqua Main
+--aqua Main
 
 import "@fluencelabs/aqua-lib/builtin.aqua"
-export generate_session_id
+export TService, generate_session_id
 
 
 service TService("two-mpc"):

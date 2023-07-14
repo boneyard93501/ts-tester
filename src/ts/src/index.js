@@ -51,11 +51,12 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
             case 1:
                 _a.sent();
                 console.log("connectTo: ", connectTo);
-                registerTService({
-                    generate_session_id: function () {
+                registerTService("two-mpc", {
+                    generateSessionId: function () {
                         // return await generateSessionId();
                         console.log("generate_session_id");
-                    },
+                        return "session_id";
+                    }
                 });
                 return [2 /*return*/];
         }

@@ -18,6 +18,44 @@ import {
 
 // Services
 
+export interface TServiceDef {
+    generateSessionId: (callParams: CallParams$$<null>) => string | Promise<string>;
+}
+export function registerTService(service: TServiceDef): void;
+export function registerTService(serviceId: string, service: TServiceDef): void;
+export function registerTService(peer: IFluenceClient$$, service: TServiceDef): void;
+export function registerTService(peer: IFluenceClient$$, serviceId: string, service: TServiceDef): void;
+       
+
+export function registerTService(...args: any) {
+    registerService$$(
+        args,
+        {
+    "defaultServiceId" : "two-mpc",
+    "functions" : {
+        "tag" : "labeledProduct",
+        "fields" : {
+            "generateSessionId" : {
+                "tag" : "arrow",
+                "domain" : {
+                    "tag" : "nil"
+                },
+                "codomain" : {
+                    "tag" : "unlabeledProduct",
+                    "items" : [
+                        {
+                            "tag" : "scalar",
+                            "name" : "string"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
+    );
+}
+      
 // Functions
 export const generate_session_id_script = `
                     (xor

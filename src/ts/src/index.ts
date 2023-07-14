@@ -11,18 +11,24 @@ const connectTo = nodes[0].multiaddr;
 if (typeof connectTo !== "string") {
   throw new Error("connectTo is not a string");
 }
+
+
+
+
+
+
 const main = async () => {
   await Fluence.connect(connectTo);
 
   console.log("connectTo: ", connectTo);
 
-  registerTService({
-    generate_session_id: () => {
+  registerTService("two-mpc", {
+    generateSessionId: () => {
       // return await generateSessionId();
       console.log("generate_session_id");
-    },
+      return "session_id";
+    }
   });
-
 
   // process.exit(0);
 };
