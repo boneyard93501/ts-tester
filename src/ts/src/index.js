@@ -45,12 +45,21 @@ if (typeof connectTo !== "string") {
     throw new Error("connectTo is not a string");
 }
 var main = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var peerId, relayPeerId;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, Fluence.connect(connectTo)];
             case 1:
                 _a.sent();
                 console.log("connectTo: ", connectTo);
+                return [4 /*yield*/, Fluence.getClient()];
+            case 2:
+                peerId = (_a.sent()).getPeerId();
+                return [4 /*yield*/, Fluence.getClient()];
+            case 3:
+                relayPeerId = (_a.sent()).getRelayPeerId();
+                console.log("PeerId: ", peerId);
+                console.log("Relay id: ", relayPeerId);
                 registerTService("two-mpc", {
                     generateSessionId: function () {
                         // return await generateSessionId();

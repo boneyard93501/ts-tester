@@ -22,6 +22,11 @@ const main = async () => {
 
   console.log("connectTo: ", connectTo);
 
+  const peerId = (await Fluence.getClient()).getPeerId();
+  const relayPeerId = (await Fluence.getClient()).getRelayPeerId();
+  console.log("PeerId: ", peerId);
+  console.log("Relay id: ", relayPeerId);
+
   registerTService("two-mpc", {
     generateSessionId: () => {
       // return await generateSessionId();
