@@ -7,9 +7,10 @@ export TService, generate_session_id
 service TService("two-mpc"):
     generateSessionId() -> string
 
-func generate_session_id() -> string:
+func generate_session_id(peer_id:string, relay_id: string) -> string:
     -- info <- getWorkersInfo()
     -- spell = info.hosts.defaultWorker.installationSpells[0]
     -- on spell.workerId via spell.hostId:
-    session_id <- TService.generateSessionId()
+    on peer_id via relay_id:
+        session_id <- TService.generateSessionId()
     <- session_id

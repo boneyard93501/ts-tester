@@ -61,25 +61,56 @@ export const generate_session_id_script = `
                     (xor
                      (seq
                       (seq
-                       (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
-                       (call %init_peer_id% ("two-mpc" "generateSessionId") [] session_id)
+                       (seq
+                        (seq
+                         (seq
+                          (seq
+                           (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
+                           (call %init_peer_id% ("getDataSrv" "peer_id") [] peer_id)
+                          )
+                          (call %init_peer_id% ("getDataSrv" "relay_id") [] relay_id)
+                         )
+                         (call -relay- ("op" "noop") [])
+                        )
+                        (call relay_id ("op" "noop") [])
+                       )
+                       (xor
+                        (seq
+                         (seq
+                          (call peer_id ("two-mpc" "generateSessionId") [] session_id)
+                          (call relay_id ("op" "noop") [])
+                         )
+                         (call -relay- ("op" "noop") [])
+                        )
+                        (seq
+                         (seq
+                          (call relay_id ("op" "noop") [])
+                          (call -relay- ("op" "noop") [])
+                         )
+                         (call %init_peer_id% ("errorHandlingSrv" "error") [%last_error% 1])
+                        )
+                       )
                       )
                       (xor
                        (call %init_peer_id% ("callbackSrv" "response") [session_id])
-                       (call %init_peer_id% ("errorHandlingSrv" "error") [%last_error% 1])
+                       (call %init_peer_id% ("errorHandlingSrv" "error") [%last_error% 2])
                       )
                      )
-                     (call %init_peer_id% ("errorHandlingSrv" "error") [%last_error% 2])
+                     (call %init_peer_id% ("errorHandlingSrv" "error") [%last_error% 3])
                     )
     `
  
 
 export function generate_session_id(
+    peer_id: string,
+    relay_id: string,
     config?: {ttl?: number}
 ): Promise<string>;
 
 export function generate_session_id(
     peer: IFluenceClient$$,
+    peer_id: string,
+    relay_id: string,
     config?: {ttl?: number}
 ): Promise<string>;
 
@@ -95,7 +126,14 @@ export function generate_session_id(...args: any) {
         "domain" : {
             "tag" : "labeledProduct",
             "fields" : {
-                
+                "peer_id" : {
+                    "tag" : "scalar",
+                    "name" : "string"
+                },
+                "relay_id" : {
+                    "tag" : "scalar",
+                    "name" : "string"
+                }
             }
         },
         "codomain" : {
