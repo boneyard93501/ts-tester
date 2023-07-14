@@ -1,0 +1,15 @@
+aqua Main
+
+import "@fluencelabs/aqua-lib/builtin.aqua"
+export generate_session_id
+
+
+service TPTSS("two-mpc"):
+    generateSessionId() -> string
+
+func generate_session_id() -> string:
+    -- info <- getWorkersInfo()
+    -- spell = info.hosts.defaultWorker.installationSpells[0]
+    -- on spell.workerId via spell.hostId:
+    session_id <- TPTSS.generateSessionId()
+    <- session_id
