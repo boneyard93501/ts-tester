@@ -1,9 +1,10 @@
 {
   "aquaSettings.imports": [
-    "/Users/bebo/localdev/sl-mpc/two-party-tss-ts/.fluence/aqua",
+    "/Users/bebo/localdev/ts-tester/.fluence/aqua",
     "/Users/bebo/.fluence/npm/@fluencelabs/aqua-lib/0.7.1/node_modules",
     "/Users/bebo/.fluence/npm/@fluencelabs/registry/0.8.6/node_modules",
     "/Users/bebo/.fluence/npm/@fluencelabs/spell/0.5.13/node_modules",
+    "/Users/bebo/localdev/sl-mpc/two-party-tss-ts/.fluence/aqua",
     "/Users/bebo/localdev/two-party-tss/.fluence/aqua"
   ]
 }
