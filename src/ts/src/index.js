@@ -39,6 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import "@fluencelabs/js-client.node";
 import { Fluence } from "@fluencelabs/js-client.api";
 import { krasnodar as nodes } from "@fluencelabs/fluence-network-environment";
+import { registerTPTSS } from "./.aqua/two_party_mpc.js";
 var connectTo = nodes[0].multiaddr;
 if (typeof connectTo !== "string") {
     throw new Error("connectTo is not a string");
@@ -50,7 +51,7 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
             case 1:
                 _a.sent();
                 console.log("connectTo: ", connectTo);
-                registerServiceTPTSS("two-mpc", {
+                registerTPTSS("two-mpc", {
                     generate_session_id: function () { return __awaiter(void 0, void 0, void 0, function () {
                         return __generator(this, function (_a) {
                             // return await generateSessionId();
