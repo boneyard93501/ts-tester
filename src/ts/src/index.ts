@@ -5,7 +5,7 @@ import "@fluencelabs/js-client.node";
 import { Fluence, registerService } from "@fluencelabs/js-client.api";
 import { krasnodar as nodes } from "@fluencelabs/fluence-network-environment";
 
-import { registerTPTSS } from "./.aqua/two_party_mpc.js";
+import { registerTService } from "./.aqua/two_party_mpc.js";
 
 const connectTo = nodes[0].multiaddr;
 if (typeof connectTo !== "string") {
@@ -16,12 +16,14 @@ const main = async () => {
 
   console.log("connectTo: ", connectTo);
 
-  registerTPTSS("two-mpc", {
-    generate_session_id: async () => {
+  registerTService({
+    generate_session_id: () => {
       // return await generateSessionId();
       console.log("generate_session_id");
     },
   });
+
+
   // process.exit(0);
 };
 

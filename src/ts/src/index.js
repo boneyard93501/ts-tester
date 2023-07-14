@@ -15,7 +15,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import "@fluencelabs/js-client.node";
 import { Fluence } from "@fluencelabs/js-client.api";
 import { krasnodar as nodes } from "@fluencelabs/fluence-network-environment";
-import { registerTPTSS } from "./.aqua/two_party_mpc.js";
+import { registerTService } from "./.aqua/two_party_mpc.js";
 var connectTo = nodes[0].multiaddr;
 if (typeof connectTo !== "string") {
     throw new Error("connectTo is not a string");
@@ -51,14 +51,11 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
             case 1:
                 _a.sent();
                 console.log("connectTo: ", connectTo);
-                registerTPTSS("two-mpc", {
-                    generate_session_id: function () { return __awaiter(void 0, void 0, void 0, function () {
-                        return __generator(this, function (_a) {
-                            // return await generateSessionId();
-                            console.log("generate_session_id");
-                            return [2 /*return*/];
-                        });
-                    }); },
+                registerTService({
+                    generate_session_id: function () {
+                        // return await generateSessionId();
+                        console.log("generate_session_id");
+                    },
                 });
                 return [2 /*return*/];
         }
